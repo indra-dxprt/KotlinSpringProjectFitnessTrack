@@ -1,0 +1,35 @@
+<div class="card mt-4">
+    <h4 class="card-header">You're logged in to Step Tracking Application!!</h4>
+    <div class="card-body">
+        <h6>Users who have Logged In Can View the Home Page</h6>
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="stepTrackerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="step">Steps Walked By You</label>
+                <input type="text" formControlName="step" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.step.errors" class="invalid-feedback">
+                    <div *ngIf="f.step.errors.required">Steps is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="time">Time You Want To Log</label>
+                <div class="24hr-example">
+                    <input formControlName="time"  placeholder="24hr format" aria-label="24hr format" [ngxTimepicker]="fullTime" [format]="24"
+                        readonly>
+                    <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+                </div>
+            </div>
+            <button [disabled]="loading" class="btn btn-primary">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Submit Logged Steps
+            </button>
+            <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+        </form>
+    </div>
+</div>
+
+<script data-require="angular.js@1.4.x" src="https://code.angularjs.org/1.4.0-rc.2/angular.js"
+    data-semver="1.4.0-rc.2"></script>

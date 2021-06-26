@@ -1,0 +1,25 @@
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="true">
+    <div class="navbar-nav">
+       
+        <a *ngIf="isLoggedIn$ | async" class="nav-item nav-link" routerLink="home">Home</a>
+        <a *ngIf="isLoggedIn$ | async" class="nav-item nav-link" routerLink="year">Aggregate Step By Year</a>
+        <a *ngIf="isLoggedIn$ | async" class="nav-item nav-link" routerLink="month">Aggregate Step By Month</a>
+        <a *ngIf="isLoggedIn$ | async; else login" class="nav-item nav-link" (click)="logout()">Logout</a>
+        <ng-template #login>
+            <a class="nav-item nav-link" routerLink="register">Sign Up</a>
+            <a class="nav-item nav-link" routerLink="login">Login</a>
+          </ng-template>
+    </div>
+</nav>
+
+<!-- main app container -->
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
