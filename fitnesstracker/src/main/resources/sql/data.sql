@@ -1,0 +1,1 @@
+insert into ftr_role VALUES(1,now(),'User',now());
